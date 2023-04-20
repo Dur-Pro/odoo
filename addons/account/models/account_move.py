@@ -1529,7 +1529,7 @@ class AccountMove(models.Model):
             move.amount_untaxed_signed = -total_untaxed
             move.amount_tax_signed = -total_tax
             move.amount_total_signed = abs(total) if move.move_type == 'entry' else -total
-            move.amount_residual_signed = total_residual
+            move.amount_residual_signed = -sign * move.amount_residual
             move.amount_total_in_currency_signed = abs(move.amount_total) if move.move_type == 'entry' else -(sign * move.amount_total)
 
             currency = currencies if len(currencies) == 1 else move.company_id.currency_id
